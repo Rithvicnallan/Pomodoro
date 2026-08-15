@@ -1,7 +1,7 @@
 import time
 
 
-def timer(countdown,timer_type):
+def timer(countdown: int,timer_type: str):
     while countdown > 0:
 
         minutes = countdown//60
