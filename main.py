@@ -1,9 +1,13 @@
 import time
 
-countdown = 10
+countdown = 100
 
 while countdown > 0:
-    print(countdown)
+
+    minutes = countdown//60
+    seconds = countdown%60
+
+    print(f'{minutes:02}:{seconds:02}')
     time.sleep(1)
     countdown -= 1
 
