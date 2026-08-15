@@ -1,7 +1,7 @@
 import time
 
 
-def timer(countdown):
+def timer(countdown,timer_type):
     while countdown > 0:
 
         minutes = countdown//60
@@ -9,16 +9,13 @@ def timer(countdown):
         print(f'{minutes:02}:{seconds:02}\r',end="", flush=True)
         time.sleep(1)
         countdown -= 1
+    print("              \r", end="")
+    print(f'Done with {timer_type}')
+    time.sleep(0.5)
 
+work_timer = input("Please input how long you would like to work for in seconds: ")
+break_timer = input("Please input how long you would like to have a break for in seconds: ")
 
-work_timer = input("Please input how long you would like to work for: ")
-break_timer = input("Please input how long you would like to have a break for: ")
-
-timer(int(work_timer))
-print("              \r", end="")
-print("Done, starting break now")
-
-timer(int(break_timer))
-
-print("              \r", end="")
-print("Done")
+timer(int(work_timer),"work")
+print("Starting break timer now")
+timer(int(break_timer),"break")
