@@ -18,10 +18,11 @@ body {
 }
 
 .btn {
-    padding: 24px 24px;
+    padding: 24px 48px;
     border: none;
     border-radius: 10px;
     background-color: black;
     color: white;
     cursor: pointer;
+    margin: 10px;
 }
