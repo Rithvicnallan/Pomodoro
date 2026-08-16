@@ -17,7 +17,7 @@ body {
 
 #time-display {
     font-size: 136px;
-    font-weight: bold;
+    font-weight: 550;
     transform: scaleY(1.2);
     text-align: center;
 }
@@ -36,7 +36,15 @@ body {
     width: 150px;
     font-family: "Sono", sans-serif;
     font-size: 17px;
-    font-weight: medium;
+    font-weight: 500;
     height: 60px;
     text-align: center;
+}
+
+#app {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
