@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background-color: #1a1a1a;
@@ -15,14 +19,24 @@ body {
     font-size: 136px;
     font-weight: bold;
     transform: scaleY(1.2);
+    text-align: center;
 }
-
+#mode-text {
+    font-size: 20px;
+    text-align: center;
+}
 .btn {
-    padding: 24px 48px;
+
     border: none;
-    border-radius: 10px;
+    border-radius: 30px;
     background-color: black;
     color: white;
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
+    width: 150px;
+    font-family: "Sono", sans-serif;
+    font-size: 17px;
+    font-weight: medium;
+    height: 60px;
+    text-align: center;
 }
