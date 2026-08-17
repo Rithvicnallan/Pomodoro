@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     margin: 0;
     background-color: #1a1a1a;
@@ -45,6 +49,23 @@ body {
     text-align: center;
 }
 
-.hidden {
-    display: none;
+.modeBtn {
+
+    border: none;
+    border-radius: 30px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    width: 150px;
+    font-family: "Sono", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    height: 60px;
+    text-align: center;
+}
+
+.selectedBtn {
+    background-color: darkgrey;
+    color: grey;
 }
