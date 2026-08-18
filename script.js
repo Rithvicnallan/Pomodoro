@@ -1,7 +1,7 @@
 console.log("connected");
 
 let state = "idle"; // idle / playing / paused
-let mode;  // work / shortBreak / longBreak
+let mode = "work";  // work / shortBreak / longBreak
 
 const DURATIONS = {
   work: 25 * 60 * 1000,
@@ -41,48 +41,7 @@ function longBreakFunction() {
 
 updateUI();
 
-function tick() {
-  const timeRemaining = endTime - Date.now();
-}
-
-function renderTime(ms) {
-  const totalSeconds = Math.ceil(timeRemaining / 1000);
-  const minutesRemaining = Math.floor(totalSeconds / 60);
-  const secondsRemaining = totalSeconds % 60;
-  const paddedMinutes = String(minutesRemaining).padStart(2, "0");
-  const paddedSeconds = String(secondsRemaining).padStart(2, "0");
-  display.textContent = `${paddedMinutes}:${paddedSeconds}`;
-}
-
-// START BUTTON
-startBtn.addEventListener("click", startFunction);
-function startFunction() {
-  console.log("Start Clicked");
-
-  if (state === "paused") {
-    endTime = Date.now() + timeRemaining;
-  } else {
-    const duration = DURATIONS[mode];
-    endTime = Date.now() + (duration);
-  }
-    tick();
-    intervalID = setInterval(tick, 1000);
-    state = "playing";
-  updateUI();
-}
-
-
-
-
-pauseBtn.addEventListener("click", pauseFunction);
-function pauseFunction() {
-  if (state !== "playing") return;
-  console.log("Pause Clicked");
-  timeRemaining = endTime - Date.now();
-  clearInterval(intervalID);
-  state = "paused";
-  updateUI();
-}
+// FUNCTIONS
 
 function updateUI() {
   if (mode === "work") {
@@ -98,8 +57,6 @@ function updateUI() {
     shortBreakBtn.classList.remove("selectedBtn");
     longBreakBtn.classList.add("selectedBtn");
   }
-
-
   if (state === "idle") {
     startBtn.classList.remove("hidden");
     pauseBtn.classList.add("hidden");
@@ -118,4 +75,47 @@ function updateUI() {
     skipBtn.classList.remove("hidden");
     startBtn.textContent = "Resume";
   }
+}
+
+function tick() {
+  const timeRemaining = endTime - Date.now();
+}
+
+function renderTime(ms) {
+  const totalSeconds = Math.ceil(timeRemaining / 1000);
+  const minutesRemaining = Math.floor(totalSeconds / 60);
+  const secondsRemaining = totalSeconds % 60;
+  const paddedMinutes = String(minutesRemaining).padStart(2, "0");
+  const paddedSeconds = String(secondsRemaining).padStart(2, "0");
+  display.textContent = `${paddedMinutes}:${paddedSeconds}`;
+}
+
+// START BUTTON
+
+startBtn.addEventListener("click", startFunction);
+function startFunction() {
+  console.log("Start Clicked");
+
+  if (state === "paused") {
+    endTime = Date.now() + timeRemaining;
+  } else {
+    const duration = DURATIONS[mode];
+    endTime = Date.now() + (duration);
+  }
+    tick();
+    intervalID = setInterval(tick, 1000);
+    state = "playing";
+  updateUI();
+}
+
+// PAUSE BUTTON
+
+pauseBtn.addEventListener("click", pauseFunction);
+function pauseFunction() {
+  if (state !== "playing") return;
+  console.log("Pause Clicked");
+  timeRemaining = endTime - Date.now();
+  clearInterval(intervalID);
+  state = "paused";
+  updateUI();
 }
