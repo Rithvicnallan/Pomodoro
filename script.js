@@ -28,28 +28,37 @@ function pomodoroFunction() {
   mode = "work";
   updateUI()
 }
-
 shortBreakBtn.addEventListener("click", shortBreakFunction);
 function shortBreakFunction() {
   mode = "shortBreak";
   updateUI()
 }
-
 longBreakBtn.addEventListener("click", longBreakFunction);
 function longBreakFunction() {
   mode = "longBreak";
   updateUI()
 }
 
-
-
-
 updateUI();
+
+function tick() {
+  const timeRemaining = endTime - Date.now();
+}
+
+function renderTime(ms) {
+  const totalSeconds = Math.ceil(timeRemaining / 1000);
+  const minutesRemaining = Math.floor(totalSeconds / 60);
+  const secondsRemaining = totalSeconds % 60;
+  const paddedMinutes = String(minutesRemaining).padStart(2, "0");
+  const paddedSeconds = String(secondsRemaining).padStart(2, "0");
+  display.textContent = `${paddedMinutes}:${paddedSeconds}`;
+}
+
 // START BUTTON
 startBtn.addEventListener("click", startFunction);
 function startFunction() {
-  if (state === "playing") return;
   console.log("Start Clicked");
+
   if (state === "paused") {
     endTime = Date.now() + timeRemaining;
   } else {
@@ -63,16 +72,7 @@ function startFunction() {
 }
 
 
-function tick() {
-  const timeRemaining = endTime - Date.now();
-  const totalSeconds = Math.ceil(timeRemaining / 1000);
-  const minutesRemaining = Math.floor(totalSeconds / 60);
-  const secondsRemaining = totalSeconds % 60;
 
-  const paddedMinutes = String(minutesRemaining).padStart(2, "0");
-  const paddedSeconds = String(secondsRemaining).padStart(2, "0");
-  display.textContent = `${paddedMinutes}:${paddedSeconds}`;
-}
 
 pauseBtn.addEventListener("click", pauseFunction);
 function pauseFunction() {
@@ -89,17 +89,14 @@ function updateUI() {
     pomodoroBtn.classList.add("selectedBtn");
     shortBreakBtn.classList.remove("selectedBtn");
     longBreakBtn.classList.remove("selectedBtn");
-    display.textContent = "25:00"
   } else if (mode === "shortBreak") {
     pomodoroBtn.classList.remove("selectedBtn");
     shortBreakBtn.classList.add("selectedBtn");
     longBreakBtn.classList.remove("selectedBtn");
-    display.textContent = "05:00"
   } else if (mode === "longBreak") {
     pomodoroBtn.classList.remove("selectedBtn");
     shortBreakBtn.classList.remove("selectedBtn");
     longBreakBtn.classList.add("selectedBtn");
-    display.textContent = "15:00"
   }
 
 
